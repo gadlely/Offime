@@ -16,6 +16,7 @@ const ExpenseDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
+  const storedName = localStorage.getItem("name");
   useEffect(() => {
     const fetchExpenseDetail = async () => {
       try {
@@ -196,7 +197,7 @@ const ExpenseDetail = () => {
               <div>
                 <div>
                   <p className="fs_lg pb_sm">작성자</p>
-                  <p className="fs_md mb_md tc-pm">{expense.username}</p>
+                  <p className="fs_md mb_md tc-pm">{storedName}</p>
                 </div>
                 <div>
                   <p className="fs_lg pb_sm">금액</p>
