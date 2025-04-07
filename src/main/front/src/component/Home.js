@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <h1>Check</h1>
-      <AttendanceBanner />
+
       <div className={"item mlr-a"}>
         <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
           <Link to={"/templates/create"}>템플릿 만들기</Link>
@@ -23,7 +23,7 @@ function Home() {
         <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
           <Link to={"/attendanceManagerForEmployee"}>내 근태이력</Link>
         </button>
-                <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
+        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
           <Link to={"/attendanceManagerForLeader"}>출퇴근 현황</Link>
         </button>
         <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
