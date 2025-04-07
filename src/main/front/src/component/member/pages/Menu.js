@@ -19,7 +19,7 @@ function Menu() {
     { name: "출퇴근 현황", path: "/attendance" },
     { name: "스케줄", path: "/schedule" },
     { name: "휴가", path: "/vacation" },
-    { name: "비용처리", path: "/expenseslist" },
+    { name: "경비관리", path: "/expenseList" },
     { name: "구성원", path: "/member" },
   ];
 

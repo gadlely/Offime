@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import ExpensesCount from "./expense/ExpensesCount ";
+import AttendanceBanner from "./attendance/AttendanceBanner";
 
 function Home() {
   return (
     <>
       <h1>Check</h1>
+      <AttendanceBanner />
       <div className={"item mlr-a"}>
         <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
           <Link to={"/templates/create"}>템플릿 만들기</Link>
@@ -30,4 +32,3 @@ function Home() {
   );
 }
 export default Home;
-
