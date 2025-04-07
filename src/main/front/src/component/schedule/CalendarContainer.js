@@ -180,6 +180,7 @@ function CalendarContainer() {
                                        selectedSchedule={selectedSchedule}
                                        onClose={() => setDetailOpen(false)}
                                        onEdit={() => setIsEditMode(true)}
+                                       getSchedule={getSchedule()}
                                    />
                                )}
                            </>
