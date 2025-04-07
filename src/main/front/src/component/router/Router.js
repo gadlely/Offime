@@ -44,6 +44,7 @@ import ResVacation from '../vacation/component/ResVacation';
 import VacationDetail from '../vacation/pages/VacationDetail';
 import SelectStatus from '../vacation/component/SelectStatus';
 import VacationAdminPage from '../vacation/pages/VacationAdminPage';
+import TemplateDetail from "../reports/templates/TemplateDetail";
 
 function Router() {
     return (
@@ -73,6 +74,7 @@ function Router() {
             <Route path="/replies/:reportId" element={<ReportReplies />} />
 
             <Route path="/templates/list" element={<TemplateList />} />
+            <Route path="/templates/detail/:templateId" element={<TemplateDetail />} />
             <Route
                 path="/reports/update/:reportId"
                 element={<ReportUpdate />}
