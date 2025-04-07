@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../../css/member.css'; // 기존 CSS 파일을 불러옵니다.
+import '../../../css/member.css';
 
 function ChangePassword() {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -38,10 +38,9 @@ function ChangePassword() {
             setSuccessMessage('비밀번호가 성공적으로 변경되었습니다.');
             setErrorMessage('');
 
-            // 성공 시 알림 표시 후 마이페이지로 리디렉션
             alert('비밀번호가 성공적으로 변경되었습니다.');
-            const userId = localStorage.getItem('id'); // 로그인된 사용자의 ID를 가져옵니다.
-            navigate(`/member/${userId}`); // 해당 사용자의 마이페이지로 이동
+            const userId = localStorage.getItem('id');
+            navigate(`/member/${userId}`);
         } catch (error) {
             setErrorMessage('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');
             alert('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');
