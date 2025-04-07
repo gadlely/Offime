@@ -4,10 +4,8 @@ import Offime.Offime.dto.request.reports.QuestionsReqDto;
 import Offime.Offime.dto.request.reports.TemplatesReqDto;
 import Offime.Offime.dto.response.reports.QuestionsResDto;
 import Offime.Offime.dto.response.reports.TemplatesResDto;
-import Offime.Offime.entity.member.Member;
 import Offime.Offime.entity.reports.Options;
 import Offime.Offime.entity.reports.Questions;
-import Offime.Offime.entity.reports.TemplateAccess;
 import Offime.Offime.entity.reports.Templates;
 import Offime.Offime.repository.member.MemberRepository;
 import Offime.Offime.repository.reports.OptionsRepository;
@@ -16,7 +14,6 @@ import Offime.Offime.repository.reports.TemplatesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -37,22 +34,6 @@ public class TemplatesService {
         template.setTitle(templatesReqDto.getTitle());
         template.setColor(templatesReqDto.getColor());
         template.setIcon(templatesReqDto.getIcon());
-
-        List<TemplateAccess> accessList = new ArrayList<>();
-
-        for (Long memberId : templatesReqDto.getAccessMemberIdList()) {
-            Member member = memberRepository.findById(memberId).orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다 : " + memberId));
-
-            TemplateAccess templateAccess = new TemplateAccess();
-            templateAccess.setMember(member);
-            templateAccess.setTemplate(template);
-
-            accessList.add(templateAccess);
-        }
-
-
-
-        template.setAccessList(accessList);
 
         templatesRepository.save(template);
 
