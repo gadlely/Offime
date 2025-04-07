@@ -7,10 +7,7 @@ import Offime.Offime.dto.response.member.MemberListDto;
 import Offime.Offime.dto.response.member.MemberPendingDto;
 import Offime.Offime.dto.response.member.MemberResponseDto;
 import Offime.Offime.dto.response.member.MemberTokenDto;
-import Offime.Offime.entity.member.Member;
-import Offime.Offime.entity.member.MemberProfileFiles;
-import Offime.Offime.entity.member.SignUpStatus;
-import Offime.Offime.entity.member.Team;
+import Offime.Offime.entity.member.*;
 import Offime.Offime.exception.MemberException;
 import Offime.Offime.exception.ResourceNotFoundException;
 import Offime.Offime.exception.UnauthorizedAccessException;
@@ -18,8 +15,6 @@ import Offime.Offime.repository.member.MemberRepository;
 import Offime.Offime.security.jwt.JwtTokenUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -31,7 +26,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,7 +35,6 @@ public class MemberService {
 
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
-    private final UserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
     private final AuthenticationManager authenticationManager;
 
@@ -50,15 +43,16 @@ public class MemberService {
         String encodedPassword = passwordEncoder.encode(memberRegisterDto.getPassword());
         memberRegisterDto.setPassword(encodedPassword);
         isExistUserEmail(memberRegisterDto.getEmail());
+
         Member saveMember = MemberRegisterDto.ofEntity(memberRegisterDto);
+        if (saveMember.getWorkStatus() == null) {
+            saveMember.setWorkStatus(WorkStatus.퇴근);
+        }
         if (saveMember.getSignUpStatus() == null) {
             saveMember.setSignUpStatus(SignUpStatus.PENDING);
         }
         saveMember = memberRepository.save(saveMember);
-
-        // 기본값을 사용하거나, 이미지 URL을 실제 값으로 설정
-        String profileImageUrl = null; // 기본값을 설정하거나, 적절한 값을 넣어주세요
-        return MemberResponseDto.fromEntity(saveMember, profileImageUrl);
+        return MemberResponseDto.fromEntity(saveMember, null);
     }
 
     private void isExistUserEmail(String email) {

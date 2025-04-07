@@ -20,14 +20,18 @@ public class VacationDtoMapper {
                 .status(VacationApprovalStatus.WAITING)
                 .build();
     }
+
     public ResVacation fromEntity(Vacation vacation) {
         return ResVacation.builder()
                 .id(vacation.getId())
                 .type(vacation.getType().getDescription())
                 .startDate(vacation.getStartDate())
+                .memberName(vacation.getMember().getName())
                 .endDate(vacation.getEndDate())
                 .reason(vacation.getReason())
                 .status(vacation.getStatus().getDescription())
+                .modifiedDate(vacation.getModifiedDate())
+                .createdDate(vacation.getCreatedDate())
                 .build();
     }
 }

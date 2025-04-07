@@ -23,15 +23,11 @@
 .right-square {
     position: static;
     font-size: var(--font_md);
-    margin-top: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .bg_wt {
     background-color: var(--natural_0);
-}
-
-.mt_md {
-    margin-top: var(--space_md);
 }
 
 .work-status {
@@ -119,26 +115,58 @@
     color: var(--natural_0);
 }
 
-/* .date-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.attendance-timeline {
+    position: relative;
+    margin-left: 2rem;
+    padding-left: 1rem;
+    border-left: 2px solid #d1d5db;
 }
 
-.date-button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    text-align: center;
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
 }
 
-.date-button:hover {
-    background-color: #0056b3;
+.timeline-item .dot {
+    position: absolute;
+    left: -1.15rem;
+    top: 0.3rem;
+    width: 12px;
+    height: 12px;
+    background-color: #4f46e5;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px #4f46e5;
 }
 
-.daily-record {
-    margin-top: 20px;
-} */
+.timeline-item .content {
+    background: #f9fafb;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.timeline-item .label {
+    display: block;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-item .value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* 말풍선 스타일 */
+.balloon {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
