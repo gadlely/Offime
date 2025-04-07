@@ -225,9 +225,13 @@ function MemberDetail() {
                                 <br /> {member.phone}
                             </p>
                             <br />
-                            <p>
-                                <Link to="/changePassword">비밀번호 변경</Link>
-                            </p>
+                            {loggedInUserId === id && (
+                                <p>
+                                    <Link to="/changePassword">
+                                        비밀번호 변경
+                                    </Link>
+                                </p>
+                            )}
                         </div>
                         {(loggedInUserId === id || userRole === 'ADMIN') && (
                             <LeaveBtn />
