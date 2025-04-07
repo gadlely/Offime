@@ -4,7 +4,6 @@ import "../../css/common.css";
 import "../../css/reset.css";
 import "../../css/expense.css";
 import ExpenseSearch from "./ExpenseSearch";
-import BackPage from "../BackPage";
 
 const ExpenseList = () => {
   const [expenses, setExpenses] = useState([]);
@@ -183,91 +182,88 @@ const ExpenseList = () => {
     }
   };
   return (
-    <>
-      <BackPage />
-      <main id="main" className="경비관리 수정">
-        <section className="sec ">
-          <div className="inner">
-            <div className=" bg_n0 item bg_pm mt_md">
-              <h3>경비 관리</h3>
-              <ExpenseSearch onSearch={handleSearch} />
-              {isLoading && <p>로딩 중...</p>}
-              {error && <p className="error">{error}</p>} {/* 승인 경비 */}
-              <button
-                onClick={() => navigate("/approved-expenses")}
-                className="btn btn-sm btn-p04"
-              >
-                승인 경비
-              </button>
-              {/* 제미니 */}
-              <button
-                onClick={() => navigate("/chatbot")}
-                className="btn btn-sm btn-p02"
-              >
-                제미니
-              </button>
-            </div>
-
-            <ul className="">
-              {hasNoResults ? (
-                <p>검색된 결과가 없습니다.</p>
-              ) : getPaginatedData().length > 0 ? (
-                getPaginatedData().map((expense) => (
-                  <li
-                    className=" bg_n0 item mt_md"
-                    key={expense.id}
-                    onClick={() => handleTitleClick(expense.id)}
-                  >
-                    {/* 상태 표시 추가 */}
-                    <div className="space-between flex">
-                      {getStatusLabel(expense.status)}{" "}
-                      {/* 상태에 따라 다르게 표시 */}
-                      <p className=""> {expense.expenseDate}</p>
-                    </div>
-
-                    <h4>{expense.title}</h4>
-
-                    <p className="pl_xsm ">{expense.content}</p>
-
-                    {/* <p className="">
-                      {expense.username || localStorage.getItem("username")}
-                    </p> */}
-                    <div className="flex space-between">
-                      <p className="pt_md "> {expense.category}</p>
-                      <p className="fs_lg">{formatAmount(expense.amount)} 원</p>
-                    </div>
-                  </li>
-                ))
-              ) : (
-                <p className="txt-a-c m_lg fs_lg">등록된 게시글이 없습니다.</p> // 등록된 경비가 없을 때
-              )}
-            </ul>
-
-            <div className="txt-a-c p_sm">
-              {showEllipsisBefore && <button>...</button>} {/* 앞쪽 생략 */}
-              {visiblePages.map((pageNumber) => (
-                <button
-                  key={pageNumber}
-                  onClick={() => handlePageChange(pageNumber)}
-                  id={currentPage === pageNumber ? "active" : ""}
-                  className="p_sm fs_md"
-                >
-                  {pageNumber}
-                </button>
-              ))}
-              {showEllipsisAfter && <button>...</button>} {/* 뒤쪽 생략 */}
-            </div>
-
+    <main id="main" className="경비관리 수정">
+      <section className="sec ">
+        <div className="inner">
+          <div className=" bg_n0 item bg_pm mt_md">
+            <h3>경비 관리</h3>
+            <ExpenseSearch onSearch={handleSearch} />
+            {isLoading && <p>로딩 중...</p>}
+            {error && <p className="error">{error}</p>} {/* 승인 경비 */}
             <button
-              className="btn btn-max btn-pm fs_lg mb_md "
-              onClick={() => navigate("/ExpenseWrite")}
+              onClick={() => navigate("/approved-expenses")}
+              className="btn btn-sm btn-p04"
             >
-              +
+              승인 경비
+            </button>
+            {/* 제미니 */}
+            <button
+              onClick={() => navigate("/chatbot")}
+              className="btn btn-sm btn-p02"
+            >
+              제미니
             </button>
           </div>
-        </section>
-      </main>
-    </>
+
+          <ul className="">
+            {hasNoResults ? (
+              <p>검색된 결과가 없습니다.</p>
+            ) : getPaginatedData().length > 0 ? (
+              getPaginatedData().map((expense) => (
+                <li
+                  className=" bg_n0 item mt_md"
+                  key={expense.id}
+                  onClick={() => handleTitleClick(expense.id)}
+                >
+                  {/* 상태 표시 추가 */}
+                  <div className="space-between flex">
+                    {getStatusLabel(expense.status)}{" "}
+                    {/* 상태에 따라 다르게 표시 */}
+                    <p className=""> {expense.expenseDate}</p>
+                  </div>
+
+                  <h4>{expense.title}</h4>
+
+                  <p className="pl_xsm ">{expense.content}</p>
+
+                  {/* <p className="">
+                      {expense.username || localStorage.getItem("username")}
+                    </p> */}
+                  <div className="flex space-between">
+                    <p className="pt_md "> {expense.category}</p>
+                    <p className="fs_lg">{formatAmount(expense.amount)} 원</p>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <p className="txt-a-c m_lg fs_lg">등록된 게시글이 없습니다.</p> // 등록된 경비가 없을 때
+            )}
+          </ul>
+
+          <div className="txt-a-c p_sm">
+            {showEllipsisBefore && <button>...</button>} {/* 앞쪽 생략 */}
+            {visiblePages.map((pageNumber) => (
+              <button
+                key={pageNumber}
+                onClick={() => handlePageChange(pageNumber)}
+                id={currentPage === pageNumber ? "active" : ""}
+                className="p_sm fs_md"
+              >
+                {pageNumber}
+              </button>
+            ))}
+            {showEllipsisAfter && <button>...</button>} {/* 뒤쪽 생략 */}
+          </div>
+
+          <button
+            className="btn btn-max btn-pm fs_lg mb_md "
+            onClick={() => navigate("/ExpenseWrite")}
+          >
+            +
+          </button>
+        </div>
+      </section>
+    </main>
   );
 };
 

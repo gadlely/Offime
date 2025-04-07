@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "../../css/common.css";
 import "../../css/reset.css";
 import "../../css/expense.css";
-import BackPage from "../BackPage";
 
 const ApprovedExpensesPage = () => {
   const [expenses, setExpenses] = useState([]);
@@ -93,95 +92,92 @@ const ApprovedExpensesPage = () => {
   }, [token, selectedYear, selectedMonth, selectedCategory, navigate]);
 
   return (
-    <>
-      <BackPage />
-      <main id="main" className="경비관리 승인내역">
-        <div className="sec">
-          <div className="inner">
-            <div className=" bg_n0 item bg_pm mt_md">
-              <div className="item">
-                <h3>승인된 경비 내역</h3>
-              </div>
-
-              <div className="txt-a-r ">
-                <select
-                  className="fs_md mb_md border_none border_bottom mr_sm "
-                  value={selectedYear}
-                  onChange={(e) => setSelectedYear(Number(e.target.value))}
-                >
-                  {Array.from(
-                    { length: 10 },
-                    (_, i) => new Date().getFullYear() - i
-                  ).map((year) => (
-                    <option key={year} value={year}>
-                      {year}년
-                    </option>
-                  ))}
-                </select>
-                <select
-                  className="fs_md mb_md border_none border_bottom mr_sm "
-                  value={selectedMonth}
-                  onChange={(e) => setSelectedMonth(Number(e.target.value))}
-                >
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                    <option key={month} value={month}>
-                      {month}월
-                    </option>
-                  ))}
-                </select>
-                <div className="flex space-around">
-                  {[...categories].map((category) => (
-                    <button
-                      key={category}
-                      type="button"
-                      className={`expense-button mb_md ${
-                        selectedCategory === category ? "selected" : ""
-                      }`}
-                      onClick={(e) => handleCategoryChange(category, e)}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="item">
-                <p className="fs_lg">
-                  {selectedCategory
-                    ? `${selectedCategory} 총 내역: ${categoryTotals[
-                        selectedCategory
-                      ].toLocaleString()} 원`
-                    : `총 내역: ${totalAmount.toLocaleString()} 원`}
-                </p>
-              </div>
-
-              {isLoading && <p>로딩 중...</p>}
-              {error && <p className="error">{error}</p>}
-              <ul className="">
-                {expenses.length > 0 ? (
-                  expenses.map((expense) => (
-                    <li key={expense.id} className="bg_n0 item">
-                      <div className="space-between flex">
-                        <p>{expense.expenseDate}</p>
-                        <p> {expense.category}</p>
-                      </div>
-                      <p>
-                        <strong>{expense.title}</strong> -{" "}
-                        {expense.amount.toLocaleString()} 원
-                      </p>
-                    </li>
-                  ))
-                ) : (
-                  <p className="txt-a-c m_lg ">
-                    해당 기간의 승인된 경비가 없습니다.
-                  </p>
-                )}
-              </ul>
+    <main id="main" className="경비관리 승인내역">
+      <div className="sec">
+        <div className="inner">
+          <div className=" bg_n0 item bg_pm mt_md">
+            <div className="item">
+              <h3>승인된 경비 내역</h3>
             </div>
+
+            <div className="txt-a-r ">
+              <select
+                className="fs_md mb_md border_none border_bottom mr_sm "
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(Number(e.target.value))}
+              >
+                {Array.from(
+                  { length: 10 },
+                  (_, i) => new Date().getFullYear() - i
+                ).map((year) => (
+                  <option key={year} value={year}>
+                    {year}년
+                  </option>
+                ))}
+              </select>
+              <select
+                className="fs_md mb_md border_none border_bottom mr_sm "
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(Number(e.target.value))}
+              >
+                {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                  <option key={month} value={month}>
+                    {month}월
+                  </option>
+                ))}
+              </select>
+              <div className="flex space-around">
+                {[...categories].map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    className={`expense-button mb_md ${
+                      selectedCategory === category ? "selected" : ""
+                    }`}
+                    onClick={(e) => handleCategoryChange(category, e)}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="item">
+              <p className="fs_lg">
+                {selectedCategory
+                  ? `${selectedCategory} 총 내역: ${categoryTotals[
+                      selectedCategory
+                    ].toLocaleString()} 원`
+                  : `총 내역: ${totalAmount.toLocaleString()} 원`}
+              </p>
+            </div>
+
+            {isLoading && <p>로딩 중...</p>}
+            {error && <p className="error">{error}</p>}
+            <ul className="">
+              {expenses.length > 0 ? (
+                expenses.map((expense) => (
+                  <li key={expense.id} className="bg_n0 item">
+                    <div className="space-between flex">
+                      <p>{expense.expenseDate}</p>
+                      <p> {expense.category}</p>
+                    </div>
+                    <p>
+                      <strong>{expense.title}</strong> -{" "}
+                      {expense.amount.toLocaleString()} 원
+                    </p>
+                  </li>
+                ))
+              ) : (
+                <p className="txt-a-c m_lg ">
+                  해당 기간의 승인된 경비가 없습니다.
+                </p>
+              )}
+            </ul>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 };
 
