@@ -20,7 +20,6 @@ function AttendanceManagerForLeader() {
     const handleViewTypeChange = (type) => {
         setViewType(type);
         setSelectedTeam(null);
-        setSelectedDate(null);
     };
 
     const handleDateChange = (date) => {
@@ -119,16 +118,19 @@ function AttendanceManagerForLeader() {
         fetchData();
     }, []);
 
-
-
     useEffect(() => {
-        // const role = localStorage.getItem("role");
-        // if (role !== "ADMIN") {
-        //     alert("리더만 접근할 수 있습니다!");
-        //     navigate("/");
-        //     return;
-        // }
+        const role = localStorage.getItem("role");
+        if (role !== "ADMIN") {
+            alert("리더만 접근할 수 있습니다!");
+            navigate("/");
+            return;
+        }
 
+        const today = new Date();
+        setSelectedDate(today);
+    }, []);
+        
+        useEffect(() => {
         if (selectedDate) {
             fetchAttendanceData(selectedDate);
         }

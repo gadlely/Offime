@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import BackPage from "../BackPage";
 
 import "../../css/common.css";
 import "../../css/reset.css";
@@ -45,51 +44,48 @@ function Chatbot() {
   };
 
   return (
-    <>
-      <BackPage />
-      <main id="main" className="경비관리 상세">
-        <section className="sec ">
-          <div className="inner">
-            <div className=" bg_n0 item bg_pm mt_md ">
-              {messages.map((msg, index) => (
-                <p
-                  key={index}
+    <main id="main" className="경비관리 상세">
+      <section className="sec ">
+        <div className="inner">
+          <div className=" bg_n0 item bg_pm mt_md ">
+            {messages.map((msg, index) => (
+              <p
+                key={index}
+                style={{
+                  textAlign: msg.sender === "user" ? "right" : "left",
+                }}
+              >
+                <div
                   style={{
                     textAlign: msg.sender === "user" ? "right" : "left",
+                    padding: "8px",
+                    margin: "5px 0",
+                    borderRadius: "10px",
+                    background: msg.sender === "user" ? "#DCF8C6" : "#EAEAEA",
+                    display: "inline-block",
+                    maxWidth: "70%",
                   }}
                 >
-                  <div
-                    style={{
-                      textAlign: msg.sender === "user" ? "right" : "left",
-                      padding: "8px",
-                      margin: "5px 0",
-                      borderRadius: "10px",
-                      background: msg.sender === "user" ? "#DCF8C6" : "#EAEAEA",
-                      display: "inline-block",
-                      maxWidth: "70%",
-                    }}
-                  >
-                    {msg.text}
-                  </div>
-                </p>
-              ))}
-            </div>
-            <div className=" bg_n0 item mt_md ">
-              <input
-                className="item input-txt fs_md width100"
-                value={input}
-                placeholder="입력해주세요"
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-              <button onClick={sendMessage} className="display_none">
-                보내기
-              </button>
-            </div>
+                  {msg.text}
+                </div>
+              </p>
+            ))}
           </div>
-        </section>
-      </main>
-    </>
+          <div className=" bg_n0 item mt_md ">
+            <input
+              className="item input-txt fs_md width100"
+              value={input}
+              placeholder="입력해주세요"
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <button onClick={sendMessage} className="display_none">
+              보내기
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 

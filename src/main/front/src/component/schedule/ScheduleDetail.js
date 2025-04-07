@@ -1,10 +1,28 @@
-function ScheduleDetail({ onClose, onEdit, selectedSchedule }) {
+import axios from "axios";
 
+function ScheduleDetail({ onClose, onEdit, selectedSchedule, getSchedule }) {
     const getDayOfWeek = (dateString) => {
         const days = ['일', '월', '화', '수', '목', '금', '토'];
         const date = new Date(dateString);
         return days[date.getDay()];
     };
+
+    const id = parseInt(selectedSchedule.id);
+
+    const deleteSched = async ()=>{
+        const check = window.confirm("스케줄을 삭제하시겠습니까?");
+        if(!check) return;
+            try {
+                await axios.delete("http://localhost:8080/schedule/delete", { params: { id: id }} );
+                console.log("[ScheduleDelete.js] deleteSched() success.")
+                onClose();
+                getSchedule();
+
+            }catch (error){
+                console.error("[ScheduleDelete.js] deleteSched() error.");
+                console.error(error);
+            }
+    }
 
     return (
         <>
@@ -37,9 +55,9 @@ function ScheduleDetail({ onClose, onEdit, selectedSchedule }) {
                     <div className="item-flex mt_lg">
                         <button
                             className="btn fs_md btn-lg btn-e-f"
-                            onClick={onClose}
+                            onClick={deleteSched}
                         >
-                            닫기
+                            스케줄 삭제
                         </button>
                         <button
                             className="btn fs_md btn-lg btn-pm"

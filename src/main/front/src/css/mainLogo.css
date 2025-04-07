@@ -1,0 +1,28 @@
+h1.logo-spacing {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    color: #4a90e2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    user-select: none;
+    pointer-events: none;
+}
+
+h1.logo-spacing span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 38px;
+    color: #607d8b;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background: linear-gradient(
+        90deg,
+        rgba(173, 216, 230, 0.8),
+        rgba(70, 130, 180, 0.8)
+    );
+    user-select: none;
+    pointer-events: none;
+}

@@ -8,6 +8,7 @@ import SignUpConfirm from '../member/pages/SignUpConfirm';
 import Menu from '../member/pages/Menu';
 import Management from '../member/pages/Management';
 import MemberDetail from '../member/pages/MemberDetail';
+import ChangePassword from '../member/pages/ChangePassword';
 
 // Report
 import Home from '../Home';
@@ -44,7 +45,7 @@ import ResVacation from '../vacation/component/ResVacation';
 import VacationDetail from '../vacation/pages/VacationDetail';
 import SelectStatus from '../vacation/component/SelectStatus';
 import VacationAdminPage from '../vacation/pages/VacationAdminPage';
-import TemplateDetail from "../reports/templates/TemplateDetail";
+import TemplateDetail from '../reports/templates/TemplateDetail';
 
 function Router() {
     return (
@@ -57,6 +58,7 @@ function Router() {
             <Route path="/member/:id" element={<MemberDetail />} />
             <Route path="/member/signUpStatus" element={<SignUpConfirm />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/changePassword" element={<ChangePassword />} />
 
             {/* Report - 손수용 20250404 19:00 */}
             <Route path="/home" element={<Home />} />
@@ -74,7 +76,10 @@ function Router() {
             <Route path="/replies/:reportId" element={<ReportReplies />} />
 
             <Route path="/templates/list" element={<TemplateList />} />
-            <Route path="/templates/detail/:templateId" element={<TemplateDetail />} />
+            <Route
+                path="/templates/detail/:templateId"
+                element={<TemplateDetail />}
+            />
             <Route
                 path="/reports/update/:reportId"
                 element={<ReportUpdate />}
