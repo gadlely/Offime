@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import { HttpHeadersContext } from '../../context/HttpHeadersProvider';
 
 import '../../../css/member.css';
+import '../../../css/mainLogo.css';
 
 function LoginForm() {
     const [email, setEmail] = useState('');
