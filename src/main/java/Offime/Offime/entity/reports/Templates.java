@@ -35,9 +35,6 @@ public class Templates {
     private LocalDateTime created_at;
 
     @OneToMany(mappedBy = "template", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TemplateAccess> accessList;
-
-    @OneToMany(mappedBy = "template", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reports> reports;
 
     @OneToMany(mappedBy = "template", cascade = CascadeType.ALL, orphanRemoval = true)
