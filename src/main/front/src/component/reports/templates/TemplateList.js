@@ -30,9 +30,6 @@ function TemplateList() {
     return (
         <section className={"templateSection"}>
             <div className={"templateInner"}>
-                    <img style={{cursor: "pointer", width: "1.5rem", display: "inline"}}
-                         src={"/image/report/backArrow.png"}
-                         onClick={() => navigate(-1)}/>
                 <div className="templateList">
                     {templateList.map((template) => (
                         <div

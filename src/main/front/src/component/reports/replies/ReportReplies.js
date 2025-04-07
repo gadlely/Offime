@@ -9,9 +9,10 @@ function ReportReplies() {
 
     return (
         <>
-                                <ReportRepliesList reportId={reportId}/>
-                                <ReportRepliesWrite reportId={reportId}/>
-
+            <section className={"templateSection"}>
+                    <ReportRepliesList reportId={reportId}/>
+                    <ReportRepliesWrite reportId={reportId}/>
+            </section>
         </>
     )
 }
