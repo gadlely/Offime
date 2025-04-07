@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "EVENT_RECORDS")
+@Table(name = "EVENT_RECORD")
 public class EventRecord {
 
     @Id
@@ -52,9 +52,6 @@ public class EventRecord {
     @Column(name = "LEAVE_EARLY")
     private int leaveEarly;
 
-    @Column(name = "ATTENDANCE_STATUS")
-    private String attendanceStatus;
-
     @Column(name = "TEAM")
     @Enumerated(EnumType.STRING)
     private Team team;
@@ -65,7 +62,7 @@ public class EventRecord {
 
     @Builder
     public EventRecord(Long id, LocalDate date, LocalDateTime requestTime, LocalTime clockIn, LocalTime clockOut, EventType eventType,
-                       OutOfOfficeType outOfOfficeType, int late, int leaveEarly, String attendanceStatus, Team team, Member member) {
+                       OutOfOfficeType outOfOfficeType, int late, int leaveEarly, Team team, Member member) {
         this.id = id;
         this.date = date;
         this.requestTime = requestTime;
@@ -75,7 +72,6 @@ public class EventRecord {
         this.outOfOfficeType = outOfOfficeType;
         this.late = late;
         this.leaveEarly = leaveEarly;
-        this.attendanceStatus = attendanceStatus;
         this.team = team;
         this.member = member;
     }
