@@ -12,12 +12,6 @@ function AttendanceManagerForEmployee() {
     const [attendanceData, setAttendanceData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (selectedDate) {
-            fetchAttendanceData(selectedDate);
-        }
-    }, [viewType, selectedDate]);
-
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
@@ -63,6 +57,16 @@ function AttendanceManagerForEmployee() {
         }
     };
 
+    useEffect(() => {
+        if (selectedDate) {
+            fetchAttendanceData(selectedDate);
+        }
+    }, [viewType, selectedDate]);
+
+    useEffect(() => {
+        setSelectedDate(new Date());
+    }, []);
+    
     return (
         <>
             <section className="sec">
@@ -144,47 +148,63 @@ function AttendanceManagerForEmployee() {
                                 {attendanceData ? (
                                     <>
                                         {viewType === "daily" && (
-                                            <>
-                                                <div className="attendance-timeline mt_md">
-    <div className="timeline-item">
-        <div className="dot" />
-        <div className="content">
-            <span className="label">출근</span>
-            <span className="value">{attendanceData.clockIn || "-"}</span>
-        </div>
-    </div>
+    <>
+        <div className="attendance-timeline mt_md">
+            {!attendanceData.clockIn &&
+            !attendanceData.outOfOffice &&
+            !attendanceData.returnToOffice &&
+            !attendanceData.clockOut ? (
+                <p>출결 기록이 없습니다.</p>
+            ) : (
+                <>
+                    {attendanceData.clockIn && (
+                        <div className="timeline-item">
+                            <div className="dot" />
+                            <div className="content">
+                                <span className="label">출근</span>
+                                <span className="value">{attendanceData.clockIn}</span>
+                            </div>
+                        </div>
+                    )}
 
-    <div className="timeline-item">
-        <div className="dot" />
-        <div className="content">
-            <span className="label">자리 비움</span>
-            <span className="value">{attendanceData.outOfOffice || "-"}</span>
-            {attendanceData.outOfOfficeType && (
-                <div className="balloon">{attendanceData.outOfOfficeType}</div>
+                    {attendanceData.outOfOffice && (
+                        <div className="timeline-item">
+                            <div className="dot" />
+                            <div className="content">
+                                <span className="label">자리 비움</span>
+                                <span className="value">{attendanceData.outOfOffice}</span>
+                                {attendanceData.outOfOfficeType && (
+                                    <div className="balloon fs_md">{attendanceData.outOfOfficeType}</div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {attendanceData.returnToOffice && (
+                        <div className="timeline-item">
+                            <div className="dot" />
+                            <div className="content">
+                                <span className="label">복귀</span>
+                                <span className="value">{attendanceData.returnToOffice}</span>
+                            </div>
+                        </div>
+                    )}
+
+                    {attendanceData.clockOut && (
+                        <div className="timeline-item">
+                            <div className="dot" />
+                            <div className="content">
+                                <span className="label">퇴근</span>
+                                <span className="value">{attendanceData.clockOut}</span>
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
         </div>
-    </div>
+    </>
+)}
 
-    <div className="timeline-item">
-        <div className="dot" />
-        <div className="content">
-            <span className="label">복귀</span>
-            <span className="value">{attendanceData.returnToOffice || "-"}</span>
-        </div>
-    </div>
-
-    <div className="timeline-item">
-        <div className="dot" />
-        <div className="content">
-            <span className="label">퇴근</span>
-            <span className="value">{attendanceData.clockOut || "-"}</span>
-        </div>
-    </div>
-</div>
-
-
-                                            </>
-                                        )}
                                         {viewType === "weekly" && (
                                             <>
                                                 <div className="item bg_pm mt_sm">
