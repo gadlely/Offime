@@ -15,6 +15,8 @@ const useSelectTitle = (location) => {
     case locationPath.startsWith("/menu"):
       return "메뉴";
 
+    case locationPath.startsWith("/templates/list"):
+      return "템플릿 목록";
     case locationPath.startsWith("/templates/create"):
       return "템플릿 작성";
     case locationPath.startsWith("/reports/templateList"):
@@ -23,10 +25,10 @@ const useSelectTitle = (location) => {
       return "보고서 상세";
     case locationPath.startsWith("/replies/:reportId"):
       return "";
-    case locationPath.startsWith("/templates/list"):
-      return "";
     case locationPath.startsWith("/reports/update/:reportId"):
       return "";
+    case locationPath.startsWith("/templates/detail/"):
+      return "보고서 상세";
 
     case locationPath.startsWith("/schedule/"):
       return "스케줄";
