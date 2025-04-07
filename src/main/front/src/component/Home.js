@@ -1,40 +1,82 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import ExpensesCount from "./expense/ExpensesCount ";
+import "../css/main.css";
+import Menu from "./member/pages/Menu";
+import {useState} from "react";
 import AttendanceBanner from "./attendance/AttendanceBanner";
 
-function Home() {
-  return (
-    <>
-      <h1>Check</h1>
 
-      <div className={"item mlr-a"}>
-        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
-          <Link to={"/templates/create"}>템플릿 만들기</Link>
-        </button>
-        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
-          <Link to={"/templates/list"}>템플릿 리스트</Link>
-        </button>
-        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
-          <Link to={"/reports/templateList"}>보고서 만들기</Link>
-        </button>
-        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
-          <Link to={"/reports/read"}>보고서 리스트</Link>
-        </button>
-        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
-          <Link to={"/attendanceManagerForEmployee"}>내 근태이력</Link>
-        </button>
-        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
-          <Link to={"/attendanceManagerForLeader"}>출퇴근 현황</Link>
-        </button>
-        <button className={"btn btn-lg btn-pm mb_md mlr-a"}>
-          <Link to={"/vacation"}>휴가</Link>
-        </button>
-        <div className="mb_md">
-          <AttendanceBanner />
-        </div>
-        <ExpensesCount />
-      </div>
-    </>
-  );
+
+function Home() {
+
+    const [selected, setSelected] = useState("home");
+
+    return (
+        <>
+            {selected == "menu" ? <Menu/> : (
+                <div className={"item mlr-a"}>
+                    <Link to={"/templates/list"}>
+                        <button className={" main-btn"}>
+                            <img src={"/image/main/template.png"} className={"main-img"}/>
+                            템플릿
+                        </button>
+                    </Link>
+                    <Link to={"/reports/read"}>
+                        <button className={"main-btn"}>
+                            <img src={"/image/main/report.png"} className={"main-img"}/>
+                            보고서
+                        </button>
+                    </Link>
+                    {/*<Link to={"/attendance/manager"}>*/}
+                    {/*    <button className={"main-btn"}>*/}
+                    {/*        <img src={"/image/report/backArrow.png"} className={"main-img"}/>*/}
+                    {/*        출퇴근*/}
+                    {/*    </button>*/}
+                    {/*</Link>*/}
+                    <Link to={"/vacation"}>
+                        <button className={"main-btn"}>
+                            <img src={"/image/main/vacation.png"} className={"main-img"}/>
+                            휴가
+                        </button>
+                    </Link>
+                    <Link to={"/attendanceManagerForEmployee"}>
+
+                        <button className={"main-btn"}>
+                            <img src={"/image/report/backArrow.png"} className={"main-img"}/>
+                            내 근태이력
+                        </button>
+                    </Link>
+                    <Link to={"/attendanceManagerForLeader"}>
+                        <button className={"main-btn"}>
+                            <img src={"/image/report/backArrow.png"} className={"main-img"}/>
+                            출퇴근 현황
+                        </button>
+                    </Link>
+                    <div className="mb_md">
+                        <AttendanceBanner/>
+                    </div>
+                    <ExpensesCount/>
+                </div>
+            )}
+
+                <div className={"bottom-menu"}>
+                    <div onClick={() => setSelected("home")} className={`${selected === "home" && "active"}`}>
+                        <img src={"/image/main/home.png"}/>
+                        <span>홈</span>
+                    </div>
+                    <div>
+                    <img src={"/image/icon_write.svg"}/>
+                    <span>홈</span>
+                </div>
+                <div onClick={() => setSelected("menu")} className={`${selected === "menu" && "active"}`}>
+                    <img src={"/image/main/menu.png"}/>
+                    <span>메뉴</span>
+                </div>
+            </div>
+        </>
+    )
+        ;
 }
+
 export default Home;
+

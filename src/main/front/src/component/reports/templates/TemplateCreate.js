@@ -68,19 +68,6 @@ function TemplateCreate() {
         <section className={"sec"}>
             <div className={"inner"}>
                 <div className={"item"}>
-                    <img
-                        onClick={() => navigate(-1)}
-                        src={"/image/report/backArrow.png"}
-                        className={"backArrowIcon"}
-                    />
-
-                    <div style={{textAlign: "center", marginBottom: "24px"}}>
-                        <h3
-                            className={"templateTitleBox"}
-                        >
-                            새 템플릿 작성
-                        </h3>
-                    </div>
 
                     <form onSubmit={create}>
                         <div>

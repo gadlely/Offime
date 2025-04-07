@@ -44,12 +44,6 @@ function ReportRead() {
         <section className="reportReadSection">
             <div className="reportInner">
                 <div className="reportHeader">
-                    <img
-                        className="reportBackIcon"
-                        src="/image/report/backArrow.png"
-                        onClick={() => navigate("/reports/read")}
-                        alt="뒤로가기"
-                    />
                     {currentMember == reportData.writerId && (
                         <img
                             src={"/image/report/detail.png"}

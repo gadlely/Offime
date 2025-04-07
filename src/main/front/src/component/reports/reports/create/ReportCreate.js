@@ -44,12 +44,6 @@ function ReportCreate() {
 
         <section className="reportCreateContainer">
             <div className="reportCreateInner">
-                <img
-                    onClick={() => navigate(-1)}
-                    src="/image/report/backArrow.png"
-                    className="reportCreateBackIcon"
-                />
-
                 <div className={`reportCreateHeader reportHeaderColor${templateData.color}`}>
                     <p>{templateData.title}</p>
                 </div>
