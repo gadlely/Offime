@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "EVENT_RECORDS")
+@Table(name = "EVENT_RECORD")
 public class EventRecord {
 
     @Id
