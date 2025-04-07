@@ -122,12 +122,12 @@ function AttendanceManagerForLeader() {
 
 
     useEffect(() => {
-        // const role = localStorage.getItem("role");
-        // if (role !== "ADMIN") {
-        //     alert("리더만 접근할 수 있습니다!");
-        //     navigate("/");
-        //     return;
-        // }
+        const role = localStorage.getItem("role");
+        if (role !== "ADMIN") {
+            alert("리더만 접근할 수 있습니다!");
+            navigate("/");
+            return;
+        }
 
         if (selectedDate) {
             fetchAttendanceData(selectedDate);
