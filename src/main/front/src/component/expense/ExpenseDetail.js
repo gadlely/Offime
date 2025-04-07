@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import BackPage from "../BackPage";
 
 import "../../css/common.css";
 import "../../css/reset.css";
@@ -16,6 +15,7 @@ const ExpenseDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
+  const name = localStorage.getItem("name");
   useEffect(() => {
     const fetchExpenseDetail = async () => {
       try {
@@ -131,133 +131,128 @@ const ExpenseDetail = () => {
   }
 
   return (
-    <>
-      <BackPage />
-      <main id="main" className="경비관리 상세">
-        <section className="sec ">
-          <div className="inner">
-            <div className="bg_n0 item bg_pm mt_md mb_md ">
-              <div className="flex space-between">
-                <h3>{expense.title}</h3>
-                <div className="pt_sm">
-                  {expense.status === "PENDING" && (
-                    <span className="btn btn-sm btn-pm fs_sm txt-a-c mb_xsm">
-                      대기중
-                    </span>
-                  )}
-                  {expense.status === "APPROVED" && (
-                    <span className="btn btn-sm btn-p04 fs_sm txt-a-c mb_xsm">
-                      승인됨
-                    </span>
-                  )}
-                  {expense.status === "REJECTED" && (
-                    <span className="btn btn-sm btn-e fs_sm txt-a-c mb_xsm">
-                      거절됨
-                    </span>
-                  )}
-                </div>
-              </div>
-              {expense.imageUrls && expense.imageUrls.length > 0 && (
-                <div className="pb_md item">
-                  {expense.imageUrls.map((url, index) => {
-                    const fileName = url.split("/").pop();
-                    const handleDownload = (e) => {
-                      e.preventDefault();
-                      fetch(url)
-                        .then((response) => response.blob())
-                        .then((blob) => {
-                          const link = document.createElement("a");
-                          link.href = URL.createObjectURL(blob);
-                          link.download = fileName;
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
-                        })
-                        .catch((error) =>
-                          console.error("다운로드 실패:", error)
-                        );
-                    };
-
-                    return (
-                      <div key={index}>
-                        <img src={url} alt={`미리보기 ${index + 1}`} />
-                        <button
-                          className="btn btn-sm btn-pm fs_sm m_sm"
-                          onClick={handleDownload}
-                        >
-                          다운로드
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-
-              <div>
-                <div>
-                  <p className="fs_lg pb_sm">작성자</p>
-                  <p className="fs_md mb_md tc-pm">{expense.username}</p>
-                </div>
-                <div>
-                  <p className="fs_lg pb_sm">금액</p>
-                  <p className="fs_md mb_md tc-pm">
-                    {formatAmount(expense.amount)} 원
-                  </p>
-                </div>
-                <div>
-                  <p className="fs_lg pb_sm">날짜</p>
-                  <p className="fs_md mb_md tc-pm">
-                    {new Date(expense.expenseDate).toLocaleDateString()}
-                  </p>
-                </div>
-                <div>
-                  <p className="fs_lg pb_sm">유형</p>
-                  <p className="fs_md mb_md tc-pm">{expense.category}</p>
-                </div>
-                <div>
-                  <p className="fs_lg pb_sm">내용</p>
-                  <p className="fs_md mb_md tc-pm">{expense.content}</p>
-                </div>
+    <main id="main" className="경비관리 상세">
+      <section className="sec ">
+        <div className="inner">
+          <div className="bg_n0 item bg_pm mt_md mb_md ">
+            <div className="flex space-between">
+              <h3>{expense.title}</h3>
+              <div className="pt_sm">
+                {expense.status === "PENDING" && (
+                  <span className="btn btn-sm btn-pm fs_sm txt-a-c mb_xsm">
+                    대기중
+                  </span>
+                )}
+                {expense.status === "APPROVED" && (
+                  <span className="btn btn-sm btn-p04 fs_sm txt-a-c mb_xsm">
+                    승인됨
+                  </span>
+                )}
+                {expense.status === "REJECTED" && (
+                  <span className="btn btn-sm btn-e fs_sm txt-a-c mb_xsm">
+                    거절됨
+                  </span>
+                )}
               </div>
             </div>
+            {expense.imageUrls && expense.imageUrls.length > 0 && (
+              <div className="pb_md item">
+                {expense.imageUrls.map((url, index) => {
+                  const fileName = url.split("/").pop();
+                  const handleDownload = (e) => {
+                    e.preventDefault();
+                    fetch(url)
+                      .then((response) => response.blob())
+                      .then((blob) => {
+                        const link = document.createElement("a");
+                        link.href = URL.createObjectURL(blob);
+                        link.download = fileName;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                      })
+                      .catch((error) => console.error("다운로드 실패:", error));
+                  };
+
+                  return (
+                    <div key={index}>
+                      <img src={url} alt={`미리보기 ${index + 1}`} />
+                      <button
+                        className="btn btn-sm btn-pm fs_sm m_sm"
+                        onClick={handleDownload}
+                      >
+                        다운로드
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
             <div>
-              <button
-                className="btn btn-max btn-p04 fs_lg mb_md"
-                onClick={handleEdit}
-              >
-                수정
-              </button>
-
-              {role === "ADMIN" && (
-                <div>
-                  <button
-                    className="btn btn-max btn-p05 fs_lg mb_md"
-                    onClick={handleDelete}
-                  >
-                    삭제
-                  </button>
-                  <div className="flex space-between">
-                    <button
-                      className="btn btn-max btn-pm fs_md mb_md"
-                      onClick={() => handleStatusChange("APPROVED")}
-                    >
-                      승인
-                    </button>
-                    <button
-                      className="btn btn-max btn-e fs_md mb_md"
-                      onClick={() => handleStatusChange("REJECTED")}
-                    >
-                      거절
-                    </button>
-                  </div>
-                </div>
-              )}
+              <div>
+                <p className="fs_lg pb_sm">작성자</p>
+                <p className="fs_md mb_md tc-pm">{name}</p>
+              </div>
+              <div>
+                <p className="fs_lg pb_sm">금액</p>
+                <p className="fs_md mb_md tc-pm">
+                  {formatAmount(expense.amount)} 원
+                </p>
+              </div>
+              <div>
+                <p className="fs_lg pb_sm">날짜</p>
+                <p className="fs_md mb_md tc-pm">
+                  {new Date(expense.expenseDate).toLocaleDateString()}
+                </p>
+              </div>
+              <div>
+                <p className="fs_lg pb_sm">유형</p>
+                <p className="fs_md mb_md tc-pm">{expense.category}</p>
+              </div>
+              <div>
+                <p className="fs_lg pb_sm">내용</p>
+                <p className="fs_md mb_md tc-pm">{expense.content}</p>
+              </div>
             </div>
           </div>
-        </section>
-      </main>
-    </>
+
+          <div>
+            <button
+              className="btn btn-max btn-p04 fs_lg mb_md"
+              onClick={handleEdit}
+            >
+              수정
+            </button>
+
+            {role === "ADMIN" && (
+              <div>
+                <button
+                  className="btn btn-max btn-p05 fs_lg mb_md"
+                  onClick={handleDelete}
+                >
+                  삭제
+                </button>
+                <div className="flex space-between">
+                  <button
+                    className="btn btn-max btn-pm fs_md mb_md"
+                    onClick={() => handleStatusChange("APPROVED")}
+                  >
+                    승인
+                  </button>
+                  <button
+                    className="btn btn-max btn-e fs_md mb_md"
+                    onClick={() => handleStatusChange("REJECTED")}
+                  >
+                    거절
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

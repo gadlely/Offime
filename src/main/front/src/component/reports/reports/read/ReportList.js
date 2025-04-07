@@ -72,15 +72,6 @@ function ReportList() {
     return (
         <section className="reportReadSection">
             <div className="reportInner">
-                <div className="reportHeader" style={{justifyContent:"flex-start"}}>
-                    <img
-                        onClick={() => navigate("/reports")}
-                        className="reportBackIcon"
-                        src="/image/report/backArrow.png"
-                        alt="뒤로가기"
-                    />
-                    <p className="replyTitle">보고서</p>
-                </div>
 
                 {reportList.map((report) => {
                     const template = templateDataMap[report.templateId];

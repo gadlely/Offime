@@ -21,14 +21,6 @@ function ReportCreateTemplateSelect() {
     return (
         <section className="templateSection">
             <div className="templateInner">
-                <div className="templateHeader">
-                    <img
-                        className="backIcon"
-                        src="/image/report/backArrow.png"
-                        alt="뒤로가기"
-                        onClick={() => navigate(-1)}
-                    />
-                </div>
 
                 <div className="templateList">
                     {templateList.map((template) => (

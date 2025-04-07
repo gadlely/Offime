@@ -40,9 +40,6 @@ function TemplateDetail() {
     return (
         <section className="reportCreateContainer">
             <div className="reportCreateInner">
-                <img style={{cursor: "pointer", width: "1.5rem", display: "inline"}}
-                     src={"/image/report/backArrow.png"}
-                     onClick={() => navigate(-1)}/>
                 <p className="replyTitle">{template.title}</p>
                 <div className="item">
                     {questionData.map((q) =>

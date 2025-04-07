@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import BackPage from "../BackPage";
 
 import "../../css/common.css";
 import "../../css/reset.css";
@@ -156,118 +155,114 @@ const ExpenseUpdate = () => {
   };
 
   return (
-    <>
-      <BackPage />
+    <main id="main" className="경비관리 상세">
+      <section className="sec ">
+        <form className="inner" onSubmit={handleSubmit}>
+          <div className="bg_n0 item bg_pm mt_md mb_md">
+            <p className="fs_lg ">제목</p>
+            <input
+              className="input input-txt fs_md mb_md "
+              name="title"
+              value={expense.title}
+              onChange={(e) =>
+                setExpense({ ...expense, title: e.target.value })
+              }
+              required
+            />
 
-      <main id="main" className="경비관리 상세">
-        <section className="sec ">
-          <form className="inner" onSubmit={handleSubmit}>
-            <div className="bg_n0 item bg_pm mt_md mb_md">
-              <p className="fs_lg ">제목</p>
+            <p className="fs_lg">사진</p>
+            <div className="btn btn-md btn-pm fs_md mb_md txt-a-c ">
+              <label htmlFor="fileInput">파일 선택</label>
               <input
-                className="input input-txt fs_md mb_md "
-                name="title"
-                value={expense.title}
-                onChange={(e) =>
-                  setExpense({ ...expense, title: e.target.value })
-                }
-                required
-              />
-
-              <p className="fs_lg">사진</p>
-              <div className="btn btn-md btn-pm fs_md mb_md txt-a-c ">
-                <label htmlFor="fileInput">파일 선택</label>
-                <input
-                  id="fileInput"
-                  className="display_none"
-                  type="file"
-                  multiple
-                  onChange={handleFileChange}
-                  accept="image/*"
-                />
-              </div>
-
-              {previewImages.length > 0 && (
-                <div>
-                  {previewImages.map((src, index) => (
-                    <div key={index} className="item">
-                      <img
-                        className="item"
-                        src={src} // 여기서 src가 서버에서 반환된 이미지 URL로 들어가야 합니다.
-                        alt={`미리보기 ${index + 1}`}
-                      />
-                      <button
-                        className="btn btn-sm btn-pl fs_sm"
-                        type="button"
-                        onClick={() => handleRemoveImage(index)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <p className="fs_lg ">금액</p>
-              <input
-                className="input input-txt fs_md mb_md"
-                name="totalAmount"
-                type="text"
-                value={formatAmount(String(expense.totalAmount))}
-                onChange={(e) =>
-                  setExpense({
-                    ...expense,
-                    totalAmount: e.target.value.replace(/[^0-9]/g, ""),
-                  })
-                }
-                required
-              />
-
-              <p className="fs_lg">날짜</p>
-              <input
-                className="input input-txt fs_md mb_md"
-                type="date"
-                value={expense.expenseDate}
-                onChange={(e) =>
-                  setExpense({ ...expense, expenseDate: e.target.value })
-                }
-                required
-              />
-
-              <p className="fs_lg">유형</p>
-              <div className="flex space-around">
-                {["식비", "교통", "숙박", "경조사", "기타"].map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    className={`expense-button mb_md ${
-                      expense.category === category ? "selected" : ""
-                    }`}
-                    onClick={(e) => handleCategoryChange(category, e)}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-
-              <p className="fs_lg">내용</p>
-              <input
-                className="input input-txt fs_md mb_md"
-                name="content"
-                value={expense.content}
-                onChange={(e) =>
-                  setExpense({ ...expense, content: e.target.value })
-                }
-                required
+                id="fileInput"
+                className="display_none"
+                type="file"
+                multiple
+                onChange={handleFileChange}
+                accept="image/*"
               />
             </div>
-            <button className="btn btn-max btn-p04 fs_lg mb_md" type="submit">
-              수정
-            </button>
-          </form>
-        </section>
-      </main>
-    </>
+
+            {previewImages.length > 0 && (
+              <div>
+                {previewImages.map((src, index) => (
+                  <div key={index} className="item">
+                    <img
+                      className="item"
+                      src={src} // 여기서 src가 서버에서 반환된 이미지 URL로 들어가야 합니다.
+                      alt={`미리보기 ${index + 1}`}
+                    />
+                    <button
+                      className="btn btn-sm btn-pl fs_sm"
+                      type="button"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <p className="fs_lg ">금액</p>
+            <input
+              className="input input-txt fs_md mb_md"
+              name="totalAmount"
+              type="text"
+              value={formatAmount(String(expense.totalAmount))}
+              onChange={(e) =>
+                setExpense({
+                  ...expense,
+                  totalAmount: e.target.value.replace(/[^0-9]/g, ""),
+                })
+              }
+              required
+            />
+
+            <p className="fs_lg">날짜</p>
+            <input
+              className="input input-txt fs_md mb_md"
+              type="date"
+              value={expense.expenseDate}
+              onChange={(e) =>
+                setExpense({ ...expense, expenseDate: e.target.value })
+              }
+              required
+            />
+
+            <p className="fs_lg">유형</p>
+            <div className="flex space-around">
+              {["식비", "교통", "숙박", "경조사", "기타"].map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  className={`expense-button mb_md ${
+                    expense.category === category ? "selected" : ""
+                  }`}
+                  onClick={(e) => handleCategoryChange(category, e)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <p className="fs_lg">내용</p>
+            <input
+              className="input input-txt fs_md mb_md"
+              name="content"
+              value={expense.content}
+              onChange={(e) =>
+                setExpense({ ...expense, content: e.target.value })
+              }
+              required
+            />
+          </div>
+          <button className="btn btn-max btn-p04 fs_lg mb_md" type="submit">
+            수정
+          </button>
+        </form>
+      </section>
+    </main>
   );
 };
 
