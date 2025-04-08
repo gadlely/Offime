@@ -171,14 +171,16 @@ function MemberDetail() {
                                         {role === 'USER' ? '직원' : '리더'}
                                     </span>
                                 ) : (
-                                    <select
-                                        value={role}
-                                        onChange={handleRoleChange}
-                                        className="input-form"
-                                    >
-                                        <option value="ADMIN">리더</option>
-                                        <option value="USER">직원</option>
-                                    </select>
+                                    userRole === 'ADMIN' && (
+                                        <select
+                                            value={role}
+                                            onChange={handleRoleChange}
+                                            className="input-form"
+                                        >
+                                            <option value="ADMIN">리더</option>
+                                            <option value="USER">직원</option>
+                                        </select>
+                                    )
                                 )}
                             </p>
                             <br />
@@ -191,17 +193,19 @@ function MemberDetail() {
                                 {userRole === 'USER' ? (
                                     <span>{getTeamStatus(team)}</span>
                                 ) : (
-                                    <select
-                                        value={team}
-                                        onChange={handleTeamChange}
-                                        className="input-form"
-                                    >
-                                        <option value="">부서 선택</option>
-                                        <option value="A">미배정</option>
-                                        <option value="B">경영팀</option>
-                                        <option value="C">인사팀</option>
-                                        <option value="D">업무팀</option>
-                                    </select>
+                                    userRole === 'ADMIN' && (
+                                        <select
+                                            value={team}
+                                            onChange={handleTeamChange}
+                                            className="input-form"
+                                        >
+                                            <option value="">부서 선택</option>
+                                            <option value="A">미배정</option>
+                                            <option value="B">경영팀</option>
+                                            <option value="C">인사팀</option>
+                                            <option value="D">업무팀</option>
+                                        </select>
+                                    )
                                 )}
                             </p>
                         </div>
