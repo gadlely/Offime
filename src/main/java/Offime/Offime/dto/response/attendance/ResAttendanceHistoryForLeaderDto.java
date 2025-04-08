@@ -45,11 +45,11 @@ public class ResAttendanceHistoryForLeaderDto {
     }
 
     public static ResAttendanceHistoryForLeaderDto fromEntity(
-            List<EventRecord> eventRecords, int workdayPersonnel, int absentPersonnel, LocalDate requestDate) {
+            List<EventRecord> eventRecord, int workdayPersonnel, int absentPersonnel, LocalDate requestDate) {
 
         LocalTime currentTime = LocalTime.now();
 
-        int clockInCount = (int) eventRecords.stream()
+        int clockInCount = (int) eventRecord.stream()
                 .filter(record -> record.getEventType() == EventType.출근)
                 .count();
 
@@ -62,31 +62,31 @@ public class ResAttendanceHistoryForLeaderDto {
                 .clockInCount(clockInCount)
                 .absentCount(absentPersonnel)
                 .beforeClockInCount(beforeClockInCount)
-                .lateCount((int) eventRecords.stream()
+                .lateCount((int) eventRecord.stream()
                         .filter(record -> record.getEventType() == EventType.출근)
                         .filter(record -> record.getLate() > 0)
                         .count())
-                .totalLateMinutes(eventRecords.stream()
+                .totalLateMinutes(eventRecord.stream()
                         .filter(record -> record.getEventType() == EventType.출근)
                         .mapToInt(EventRecord::getLate)
                         .sum())
-                .leaveEarlyCount((int) eventRecords.stream()
+                .leaveEarlyCount((int) eventRecord.stream()
                         .filter(record -> record.getEventType() == EventType.퇴근)
                         .filter(record -> record.getLeaveEarly() > 0)
                         .count())
-                .totalLeaveEarlyMinutes(eventRecords.stream()
+                .totalLeaveEarlyMinutes(eventRecord.stream()
                         .filter(record -> record.getEventType() == EventType.퇴근)
                         .mapToInt(EventRecord::getLeaveEarly)
                         .sum())
-                .atWorkCount((int) eventRecords.stream()
+                .atWorkCount((int) eventRecord.stream()
                         .filter(record -> record.getEventType() == EventType.출근)
                         .filter(record -> record.getMember().getWorkStatus() == WorkStatus.근무중)
                         .count())
-                .onBreakCount((int) eventRecords.stream()
+                .onBreakCount((int) eventRecord.stream()
                         .filter(record -> record.getEventType() == EventType.출근)
                         .filter(record -> record.getMember().getWorkStatus() == WorkStatus.자리비움중)
                         .count())
-                .offWorkCount((int) eventRecords.stream()
+                .offWorkCount((int) eventRecord.stream()
                         .filter(record -> record.getEventType() == EventType.출근)
                         .filter(record -> record.getMember().getWorkStatus() == WorkStatus.퇴근)
                         .count())
