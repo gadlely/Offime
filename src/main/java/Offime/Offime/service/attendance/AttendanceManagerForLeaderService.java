@@ -73,9 +73,8 @@ public class AttendanceManagerForLeaderService {
         boolean hasAttendanceRecord = eventRecordRepository.existsByMemberAndDate(member, date);
 
         if (isOnVacation(member, date)) {
-            // 휴가 중인 경우 미출근으로 카운트하지 않음
             log.info("휴가 중: {}", member.getName());
-            return 0;
+            return 1;
         } else if (!hasAttendanceRecord) {
             if (date.isEqual(LocalDate.now())) { // 오늘 날짜인 경우
                 if (LocalTime.now().isBefore(COMPANY_START_TIME)) { // 회사 시작 시간 이전
