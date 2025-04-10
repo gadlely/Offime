@@ -37,6 +37,11 @@
   width: 100%;
 }
 
+.border_radius100 {
+  border-radius: 100px;
+  height: 30px;
+  align-items: center;
+}
 /* 카테고리 버튼 그룹 */
 
 #expense .expense-button {
@@ -54,4 +59,11 @@
 }
 #expense .space-around {
   justify-content: space-around;
+}
+.jc_center {
+  justify-content: center;
+}
+
+.ai_center {
+  align-items: center;
 }

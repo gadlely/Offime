@@ -182,17 +182,21 @@ const ExpenseList = () => {
   return (
       <section id="expense" className="sec ">
         <div className="inner">
-          <div className=" bg_n0 item bg_pm mt_md">
-            <h3>경비 관리</h3>
+          <div className=" bg_n0 item bg_pm mt_md ">
+            <div className="flex space-between ">
+              <h3>경비 관리</h3>
+              {localStorage.getItem("role") === "ADMIN" && (
+                <button
+                  onClick={() => navigate("/approved-expenses")}
+                  className=" bg_p04 tc-w border_radius100 mt_sm pl_sm pr_sm"
+                >
+                  승인 경비
+                </button>
+              )}
+            </div>
             <ExpenseSearch onSearch={handleSearch} />
             {isLoading && <p>로딩 중...</p>}
             {error && <p className="error">{error}</p>} {/* 승인 경비 */}
-            <button
-              onClick={() => navigate("/approved-expenses")}
-              className="btn btn-sm btn-p04"
-            >
-              승인 경비
-            </button>
             {/* 제미니 */}
             <button
               onClick={() => navigate("/chatbot")}
