@@ -29,11 +29,15 @@
    transform: translateX(-50%);
    width: var(--device-width);
    background-color: #ffffff;
-   padding: var(--space_sm);
+   padding: var(--space_sm) 0;
    box-shadow: rgba(198, 198, 198, 0.36) 2px -2px 5px 0 ;
 }
 
 .bottom-menu div {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 5px;
    text-align: center;
    cursor: pointer;
    opacity: 0.5;
@@ -41,11 +45,11 @@
 
 .bottom-menu div.active {
    opacity: 1;
-   transition: opacity 0.1s ease;
+   filter: invert(47%) sepia(59%) saturate(1881%) hue-rotate(189deg) brightness(102%) contrast(99%);
 }
 
 .bottom-menu img {
-   width: 2rem;
+   width: 1.5rem;
 }
 
 .main {

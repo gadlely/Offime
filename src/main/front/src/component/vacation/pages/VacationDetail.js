@@ -72,66 +72,68 @@ const VacationDetail = () => {
 
   return (
     <>
-      <RequestStatus response={response} />
-      {isAdmin && (
-        <div className="item bg_n0 mt_md">
-          <h4>휴가 신청자</h4>
-          <p style={{ fontSize: "14px", marginTop: "10px" }}>{name}</p>
-        </div>
-      )}
-      <p
-        style={{
-          fontSize: "12px",
-          marginTop: "20px",
-          position: "relative",
-          textAlign: "right",
-          marginRight: "10px",
-        }}
-      >
-        신청일 : {response.createdDate}
-      </p>
-      <div className="bg_n0 item">
-        <p> {response.type}</p>
-        <p>
-          {response.startDate} ~ {response.endDate}
-        </p>
-        <div
-          className="item"
-          style={{
-            backgroundColor: "#F2F4F6",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <h4
+        <div className="inner">
+          <RequestStatus response={response} />
+          {isAdmin && (
+            <div className="item bg_n0 mt_md">
+              <h3>휴가 신청자</h3>
+              <p style={{ fontSize: "14px", marginTop: "10px" }}>{name}</p>
+            </div>
+          )}
+          <p
             style={{
-              color: getStatusColor(response.status),
-              fontSize: "28px",
-              right: "10px",
+              fontSize: "12px",
+              marginTop: "20px",
+              position: "relative",
+              textAlign: "right",
+              marginRight: "10px",
             }}
           >
-            {calculateDays(response.startDate, response.endDate)}
-            <span style={{ fontSize: "20px" }}>일</span>
-          </h4>
+            신청일 : {response.createdDate}
+          </p>
+          <div className="bg_n0 item">
+            <p> {response.type}</p>
+            <p>
+              {response.startDate} ~ {response.endDate}
+            </p>
+            <div
+              className="item"
+              style={{
+                backgroundColor: "#F2F4F6",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <h4
+                style={{
+                  color: getStatusColor(response.status),
+                  fontSize: "28px",
+                  right: "10px",
+                }}
+              >
+                {calculateDays(response.startDate, response.endDate)}
+                <span style={{ fontSize: "20px" }}>일</span>
+              </h4>
+            </div>
+          </div>
+
+          <div className="item bg_n0 mt_md">
+            <p style={{ borderBottom: "1px solid black" }}>사유 </p>
+            <p style={{ width: "430px" }}>
+              {response.reason}
+              ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+            </p>
+          </div>
+
+          {/* ✅ 버튼 컴포넌트 적용 */}
+          <VacationActionButton
+            isAdmin={isAdmin}
+            onCancel={handleCancel}
+            onApprove={handleApprove}
+            onReject={handleReject}
+          />
         </div>
-      </div>
-
-      <div className="item bg_n0 mt_md">
-        <p style={{ borderBottom: "1px solid black" }}>사유 </p>
-        <p style={{ width: "430px" }}>
-          {response.reason}
-          ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-        </p>
-      </div>
-
-      {/* ✅ 버튼 컴포넌트 적용 */}
-      <VacationActionButton
-        isAdmin={isAdmin}
-        onCancel={handleCancel}
-        onApprove={handleApprove}
-        onReject={handleReject}
-      />
     </>
   );
 };

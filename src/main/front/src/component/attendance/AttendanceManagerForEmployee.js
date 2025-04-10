@@ -71,7 +71,6 @@ function AttendanceManagerForEmployee() {
         <>
             <section className="sec">
                 <div className="inner">
-                    <div className="item">
                         <p className="fs_lg">내 출퇴근 이력</p>
 
                         {/* 일간/주간/월간 보기 선택 버튼 */}
@@ -115,6 +114,7 @@ function AttendanceManagerForEmployee() {
                                     onChange={handleDateChange}
                                     dateFormat="yyyy-MM-dd"
                                     className="input input-txt fs_md mt_md"
+                                    style={{borderRadius:"var(--round-sm)"}}
                                     placeholderText="클릭해서 날짜를 선택해주세요"
                                     maxDate={new Date()}
 
@@ -271,7 +271,6 @@ function AttendanceManagerForEmployee() {
                                 )}
                             </>
                         )}
-                    </div>
                 </div>
             </section>
         </>

@@ -16,18 +16,18 @@ const YearBox = () => {
     >
       {/* 이전 연도 버튼 */}
       <button
-        style={{ fontSize: "20px" }}
+        className="fs_lg"
         onClick={() => setYear((prev) => prev - 1)}
       >
         {"<"}
       </button>
 
       {/* 현재 연도 표시 */}
-      <h4>{year}</h4>
+      <h3>{year}</h3>
 
       {/* 다음 연도 버튼 */}
       <button
-        style={{ fontSize: "20px" }}
+          className="fs_lg"
         onClick={() => setYear((prev) => prev + 1)}
       >
         {">"}

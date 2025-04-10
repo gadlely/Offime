@@ -45,7 +45,7 @@
   --round-md: 0.625rem;
   --round-sm: 0.3125rem;
 
-  --header-height: 2.5rem;
+  --header-height: 6rem;
 }
 
 /* body, html 1rem 정의 ---------------------------------------------------------------*/
@@ -55,6 +55,7 @@ body {
 }
 #main {
   min-height: 100vh;
+  padding-top: var(--header-height);
 }
 
 /* layout ---------------------------------------------------------------*/

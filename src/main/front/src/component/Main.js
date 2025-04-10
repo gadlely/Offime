@@ -17,10 +17,8 @@ function Main() {
   return (
     <div id={"container"}>
       <div id={"device"}>
-        <main id={"main"}>
-          <section className={"sec"}>
-            <div className={"inner"}>
               <CommonNav messages={messages} />
+        <main id={"main"}>
               <Router />
               <ToastContainer
                 autoClose={3000}
@@ -30,8 +28,6 @@ function Main() {
                 draggable="true"
               />
               <NotificationToast messages={messages} />
-            </div>
-          </section>
         </main>
       </div>
     </div>

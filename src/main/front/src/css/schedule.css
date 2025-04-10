@@ -1,5 +1,5 @@
 #schedule { margin-bottom: 0 }
-#schedule .calendar { width: 100%; text-align: center; transition: .3s; height: 100vh}
+#schedule .calendar { width: 100%; text-align: center; transition: .3s; height: calc(100vh - var(--header-height))}
 #schedule .calendar-container.active .calendar { height: 40vh; overflow: hidden; }
 #schedule .calendar .calendar-header { display: flex; justify-content: space-between; align-items: center; padding: 0 2rem}
 #schedule .calendar .calendar-header p { cursor: pointer; color: var(--primary_m); }

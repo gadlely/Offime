@@ -6,13 +6,6 @@ const NotificationIcon = ({ count }) => {
   return (
     <button
       className="notification-icon"
-      style={{
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        position: "absolute",
-        right: "10px",
-      }}
       onClick={() => navigate("/notification")}
     >
       {count > 0 && (
@@ -38,7 +31,6 @@ const NotificationIcon = ({ count }) => {
       <img
         src={notificationIC}
         alt="알림"
-        style={{ height: "50%", width: "auto" }}
       />
     </button>
   );

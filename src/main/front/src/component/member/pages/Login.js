@@ -6,9 +6,7 @@ function Login() {
     return (
         <section className="sec">
             <div className="inner">
-                <div className="item">
-                    <LoginForm />
-                </div>
+                <LoginForm />
             </div>
         </section>
     );

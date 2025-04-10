@@ -169,7 +169,7 @@ function AttendanceBanner() {
   };
 
   return (
-    <div className="item bg_pm mt_lg">
+    <div className="item bg_pm">
       <div className="fs_md tc-w">
         {(status === "퇴근")&& `오늘은 ${currentDate.month}월 ${currentDate.day}일 ${currentDate.weekday}이에요 :D`}
         {status === "근무중" && `근무 중 ${startTime}~`}
@@ -180,12 +180,12 @@ function AttendanceBanner() {
 
       <div className="btn-group">
         {(status === "퇴근") && (
-          <button className="btn btn-max btn-pl fs_lg mt_sm mb_sm" onClick={handleClockIn}>출근</button>
+          <button style={{backgroundColor:"var(--natural_0)"}} className="btn btn-max mt_sm mb_sm" onClick={handleClockIn}><span className="tc-pm fs_lg">출근</span></button>
         )}
         {status === "근무중" && (
           <>
-            <button className="btn btn-max btn-p04 fs_lg mt_sm mb_sm" onClick={handleOutOfOfficePopup}>자리비움</button>
-            <button className="btn btn-max btn-p05 fs_lg mt_sm mb_sm" onClick={handleClockOut}>퇴근</button>
+              <button className="btn btn-max btn-p04 fs_lg mt_sm mb_sm" onClick={handleOutOfOfficePopup}>자리비움</button>
+              <button className="btn btn-max btn-p05 fs_lg mt_sm mb_sm" onClick={handleClockOut}>퇴근</button>
           </>
         )}
         {status === "자리비움중" && (
@@ -200,10 +200,12 @@ function AttendanceBanner() {
         <div className="popup-overlay">
           <div className="popup-content">
             <h3>자리비움 유형을 선택하세요</h3>
-            <button onClick={() => handleOutOfOffice("휴식")}>휴식</button>
-            <button onClick={() => handleOutOfOffice("식사")}>식사</button>
-            <button onClick={() => handleOutOfOffice("기타")}>기타</button>
-            <button onClick={handleClosePopup}>닫기</button>
+            <div style={{display:"flex", justifyContent:"space-between"}}>
+              <button className="btn btn-sm btn-pm fs_sm" onClick={() => handleOutOfOffice("휴식")}>휴식</button>
+              <button className="btn btn-sm btn-pm fs_sm" onClick={() => handleOutOfOffice("식사")}>식사</button>
+              <button className="btn btn-sm btn-pm fs_sm" onClick={() => handleOutOfOffice("기타")}>기타</button>
+              <button className="btn btn-sm btn-e-f fs_sm" onClick={handleClosePopup}>닫기</button>
+            </div>
           </div>
         </div>
       )}

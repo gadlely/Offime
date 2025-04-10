@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css/common.css";
-import "../../css/reset.css";
 import "../../css/expense.css";
 import ExpenseSearch from "./ExpenseSearch";
 
@@ -182,8 +180,7 @@ const ExpenseList = () => {
     }
   };
   return (
-    <main id="main" className="경비관리 수정">
-      <section className="sec ">
+      <section id="expense" className="sec ">
         <div className="inner">
           <div className=" bg_n0 item bg_pm mt_md">
             <h3>경비 관리</h3>
@@ -263,7 +260,6 @@ const ExpenseList = () => {
           </button>
         </div>
       </section>
-    </main>
   );
 };
 

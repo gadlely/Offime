@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../css/common.css";
+import "../../css/layout.css";
 import useCount from "../notification/hooks/useCount";
 import useSelectTitle from "./utils/useSelectTitle";
 import { useEffect } from "react";
@@ -20,66 +21,41 @@ const CommonNav = (messages) => {
   useEffect(() => {}, [count]);
 
   return (
-    <nav
-      className="bg_n0 item bg_pm mt_md"
-      style={{
-        height: "50px",
-        display: "flex",
-        alignItems: "center",
-        position: "relative",
-      }}
-    >
-      {!isMainPage && <BackButton />}
-      <h4
-        style={{
-          marginLeft: "10px",
-          height: "60%",
-          width: "auto",
-          display: "flex",
-          alignItems: "center",
-          fontSize: "20px",
-        }}
-      >
-        {title}
-      </h4>
-      {isVacationPage && (
-        <button
-          className="home-icon"
-          style={{
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            position: "absolute",
-            right: "70px",
-          }}
-          onClick={handleListPage}
+      <header>
+        <nav
+          className="bg_wt item mt_md"
         >
-          <img
-            src={listImage}
-            alt="목록"
-            style={{ height: "50%", width: "auto" }}
-          />
-        </button>
-      )}
-      <button
-        className="home-icon"
-        style={{
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          position: "absolute",
-          right: "40px",
-        }}
-        onClick={() => navigate("/")}
-      >
-        <img
-          src={homeImage}
-          alt="홈"
-          style={{ height: "50%", width: "auto" }}
-        />
-      </button>
-      <NotificationIcon count={count} />
-    </nav>
+            <div className="back-area">
+              {!isMainPage && <BackButton />}
+              <h4>
+                {title}
+              </h4>
+            </div>
+            <div className="btn-box">
+              {isVacationPage && (
+                <button
+                  className="home-icon"
+                  onClick={handleListPage}
+                >
+                  <img
+                    src={listImage}
+                    alt="목록"
+                  />
+                </button>
+              )}
+              <button
+                className="home-icon"
+                onClick={() => navigate("/")}
+              >
+                <img
+                  src={homeImage}
+                  alt="홈"
+                />
+              </button>
+              <NotificationIcon count={count} />
+            </div>
+        </nav>
+      </header>
   );
 };
 

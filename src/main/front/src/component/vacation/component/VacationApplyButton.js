@@ -11,13 +11,7 @@ const VacationApplyButton = ({ handleApply }) => {
       }}
     >
       <button
-        className="btn btn-pm fs_md mb_md"
-        style={{
-          width: "15rem",
-          padding: "1rem 2rem",
-          bottom: "20px",
-          position: "fixed",
-        }}
+        className="btn btn-pm btn-lg fs_md mb_md"
         onClick={handleApply}
       >
         신청하기

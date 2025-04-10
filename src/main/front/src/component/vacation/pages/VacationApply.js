@@ -15,44 +15,47 @@ const VacationApply = () => {
   }, []);
   return (
     <>
-      <div className="item bg_pm mt_md">
-        <div style={{ display: "flex", position: "relative" }}>
-          <p style={{ color: "white", fontSize: "15px" }}>신청 가능한 휴가</p>
-          <p
-            style={{
-              color: "white",
-              fontSize: "24px",
-              position: "absolute",
-              right: "0px",
-              fontWeight: "bold",
-            }}
-          >
-            {response.availableLeaveDays}
-            <span
-              style={{
-                color: "white",
-                display: "inline-block",
-                fontSize: "24px",
-                fontWeight: "bold",
-              }}
-            >
-              일
-            </span>
-          </p>
+        <div className="inner">
+
+              <div className="item bg_pm mt_md">
+                <div style={{ display: "flex", position: "relative" }}>
+                  <p style={{ color: "white", fontSize: "15px" }}>신청 가능한 휴가</p>
+                  <p
+                    style={{
+                      color: "white",
+                      fontSize: "24px",
+                      position: "absolute",
+                      right: "0px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {response.availableLeaveDays}
+                    <span
+                      style={{
+                        color: "white",
+                        display: "inline-block",
+                        fontSize: "24px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      일
+                    </span>
+                  </p>
+                </div>
+                <span style={{ color: "white" }}>사용기한</span>
+                <span
+                  style={{
+                    color: "white",
+                    display: "block",
+                    width: "auto",
+                    height: "auto",
+                  }}
+                >
+                  {`${new Date().getFullYear()}-01-01 ~ ${new Date().getFullYear()}-12-31`}
+                </span>
+              </div>
+              <SelectCalendar />
         </div>
-        <span style={{ color: "white" }}>사용기한</span>
-        <span
-          style={{
-            color: "white",
-            display: "block",
-            width: "auto",
-            height: "auto",
-          }}
-        >
-          {`${new Date().getFullYear()}-01-01 ~ ${new Date().getFullYear()}-12-31`}
-        </span>
-      </div>
-      <SelectCalendar />
     </>
   );
 };

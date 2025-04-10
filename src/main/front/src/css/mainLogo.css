@@ -1,11 +1,16 @@
+@font-face {
+    font-family: 'HSBombaram21-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/HSBombaram21-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 h1.logo-spacing {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 36px;
+    font-family: 'HSBombaram21-Regular';
+    font-size: var(--font_xlg);
     text-align: center;
-    color: #4a90e2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    letter-spacing: 2px;
+    color: var(--primary_m);
+    letter-spacing: .05em;
     margin-top: 50px;
     margin-bottom: 20px;
     user-select: none;
@@ -13,9 +18,8 @@ h1.logo-spacing {
 }
 
 h1.logo-spacing span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 38px;
-    color: #607d8b;
+    font-family: 'HSBombaram21-Regular';
+    color: var(--font_xlg);
     border-radius: 10px;
     padding: 5px 10px;
     background: linear-gradient(

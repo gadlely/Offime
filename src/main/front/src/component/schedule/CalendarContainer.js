@@ -108,7 +108,7 @@ function CalendarContainer() {
                 <p className="hidden">calendar page</p>
                 <div className="calender-wrap">
                     <div className="calendar">
-                        <CalendarHeader currentDate={currentDate} onClick={handleYearMonth} handleViewMode={handleViewMode} />
+                        <CalendarHeader currentDate={currentDate} onClick={handleYearMonth} handleViewMode={handleViewMode}/>
                         <DaysGrid
                             renderDays={renderCalendar(currentDate, schedules)}
                             activeDay={activeDay}

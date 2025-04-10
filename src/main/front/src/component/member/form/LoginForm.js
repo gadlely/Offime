@@ -64,7 +64,7 @@ function LoginForm() {
     }, []);
 
     return (
-        <form onSubmit={login} className="txt-a-c">
+        <form onSubmit={login} className="txt-a-c login-wrap">
             <h1 className="logo-spacing">Offime</h1>
 
             <div className="input-spacing">
@@ -89,17 +89,17 @@ function LoginForm() {
                 />
             </div>
 
-            <div className="login-container">
-                <button type="submit" className="button-spacing">
+            <div className="login-container mt_md">
+                <button type="submit" className="btn btn-max button-spacing btn-pm">
                     이메일로 로그인
                 </button>
             </div>
+                <div className="divider-line mt_md mb_md"></div>
             <div className="button-container">
-                <div className="divider-line"></div>
 
                 <Link
                     to={'/signUp'}
-                    className="mlr-a btn btn-pm btn-md button-spacing"
+                    className="mlr-a btn btn-lg button-spacing"
                 >
                     회원가입
                 </Link>

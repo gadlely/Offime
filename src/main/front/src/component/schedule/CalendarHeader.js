@@ -1,6 +1,6 @@
 function CalendarHeader({ currentDate, onClick, handleViewMode }) {
     return (
-        <div className="calendar-header">
+        <div className="calendar-header mb_md">
             <p id="monthYear" className="cal-month" onClick={onClick}>
                 {currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월
             </p>
