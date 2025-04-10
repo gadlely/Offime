@@ -42,7 +42,7 @@
 
 /* 달력 크기 조정 */
 .react-datepicker {
-  display: block;
+
   width: fit-content;
   border: none;
   margin: 0 auto;
