@@ -47,9 +47,9 @@ const useSelectTitle = (location) => {
       return "AI";
 
     case locationPath.startsWith("/attendanceManagerForEmployee"):
-      return "출퇴근 이력";
+      return "메인 페이지";
     case locationPath.startsWith("/attendanceManagerForLeader"):
-      return "출퇴근 현황";
+      return "메인 페이지";
 
     case locationPath.startsWith("/notification"):
       return "알림 메시지";

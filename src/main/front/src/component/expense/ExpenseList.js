@@ -187,22 +187,20 @@ const ExpenseList = () => {
             <ExpenseSearch onSearch={handleSearch} />
             {isLoading && <p>로딩 중...</p>}
             {error && <p className="error">{error}</p>} {/* 승인 경비 */}
-            <div className="flex" style={{gap:".5rem"}}>
-              <button
-                onClick={() => navigate("/approved-expenses")}
-                className="btn btn-sm btn-p04"
-              >
-                승인 경비
-              </button>
-              {/* 제미니 */}
-              <button
-                onClick={() => navigate("/chatbot")}
-                className="btn btn-sm btn-p02"
-              >
-                제미니
-              </button>
-            </div>
-            </div>
+            <button
+              onClick={() => navigate("/approved-expenses")}
+              className="btn btn-sm btn-p04"
+            >
+              승인 경비
+            </button>
+            {/* 제미니 */}
+            <button
+              onClick={() => navigate("/chatbot")}
+              className="btn btn-sm btn-p02"
+            >
+              제미니
+            </button>
+          </div>
 
           <ul className="">
             {hasNoResults ? (

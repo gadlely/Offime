@@ -11,7 +11,11 @@ function AttendanceManagerForLeader() {
     const [viewType, setViewType] = useState("forAll");
     const [selectedDate, setSelectedDate] = useState(null);
     const [attendanceData, setAttendanceData] = useState(null);
-    const [team, setTeam] = useState(["A", "B", "C"]);
+    const [team, setTeam] = useState([
+    { code: "B", name: "경영팀" },
+    { code: "C", name: "인사팀" },
+    { code: "D", name: "업무팀" },
+    ]);
     const [selectedTeam, setSelectedTeam] = useState(null);
     const [loading, setLoading] = useState(false);
     const [totalEmployees, setTotalEmployees] = useState(0);
@@ -100,23 +104,20 @@ function AttendanceManagerForLeader() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const totalEmployeesData = await fetchTotalEmployees();
-
-            if (totalEmployeesData !== null) {
+            if (viewType === "forAll") {
+                const totalEmployeesData = await fetchTotalEmployees();
                 setTotalEmployees(totalEmployeesData);
-            }
-
-            const employeesByTeamData = {};
-            for (const team of ["A", "B", "C"]) {
-                const teamCount = await fetchTotalEmployeesByTeam(team);
-                if (teamCount !== null) {
+            } else if (viewType === "forTeam") {
+                const employeesByTeamData = {};
+                for (const team of ["A", "B", "C"]) {
+                    const teamCount = await fetchTotalEmployeesByTeam(team);
                     employeesByTeamData[team] = teamCount;
                 }
+                setEmployeesByTeam(employeesByTeamData);
             }
-            setEmployeesByTeam(employeesByTeamData);
         };
         fetchData();
-    }, []);
+    }, [viewType]);
 
     useEffect(() => {
         const role = localStorage.getItem("role");
@@ -129,7 +130,7 @@ function AttendanceManagerForLeader() {
         const today = new Date();
         setSelectedDate(today);
     }, []);
-        
+
         useEffect(() => {
         if (selectedDate) {
             fetchAttendanceData(selectedDate);
@@ -163,13 +164,13 @@ function AttendanceManagerForLeader() {
                         {/* 팀 선택 버튼 */}
                         {viewType === "forTeam" && (
                             <div className="view-type-selector mt_md">
-                                {team.map((team) => (
+                                {team.map(({ code, name }) => (
                                     <button
-                                        key={team}
-                                        className={`btn ${selectedTeam === team ? "active" : ""}`}
-                                        onClick={() => handleTeamSelect(team)}
+                                        key={code}
+                                        className={`btn ${selectedTeam === code ? "active" : ""}`}
+                                        onClick={() => handleTeamSelect(code)}
                                     >
-                                        {team} 팀
+                                        {name}
                                     </button>
                                 ))}
                             </div>
