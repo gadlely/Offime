@@ -9,7 +9,6 @@ import Offime.Offime.repository.member.MemberRepository;
 import Offime.Offime.repository.vacation.VacationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -73,38 +72,19 @@ public class AttendanceManagerForLeaderService {
         boolean hasAttendanceRecord = eventRecordRepository.existsByMemberAndDate(member, date);
 
         if (isOnVacation(member, date)) {
-            // 휴가 중인 경우 미출근으로 카운트하지 않음
-            log.info("휴가 중: {}", member.getName());
-            return 0;
+            return 1;
         } else if (!hasAttendanceRecord) {
             if (date.isEqual(LocalDate.now())) { // 오늘 날짜인 경우
                 if (LocalTime.now().isBefore(COMPANY_START_TIME)) { // 회사 시작 시간 이전
-                    log.info("출근 전: {}", member.getName());
-                    return -1; // 출근 전 상태로 표시 (별도 처리)
+                    return -1; // 출근 전 상태
                 } else {
-                    log.info("미출근: {}", member.getName());
-                    return 1; // 미출근으로 카운트
+                    return 1; // 미출근
                 }
             } else { // 지난 날짜인 경우
-                log.info("지난 날짜 미출근 처리: {}", member.getName());
                 return 1; // 지난 날짜는 모두 미출근으로 처리
             }
         }
         return 0; // 출근 기록이 있는 경우
-    }
-
-    @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-    private void updateNotYetArrivedToAbsent() {
-        LocalDate today = LocalDate.now();
-        List<Member> allMembers = memberRepository.findAll();
-
-        for (Member member : allMembers) {
-            boolean hasAttendanceRecord = eventRecordRepository.existsByMemberAndDate(member, today);
-
-            if (!hasAttendanceRecord && !isOnVacation(member, today)) {
-                log.info("자정 이후 미출근 처리: {}", member.getName());
-            }
-        }
     }
 
     public long getTotalEmployeeCount() {
