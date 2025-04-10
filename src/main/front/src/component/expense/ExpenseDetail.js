@@ -131,8 +131,7 @@ const ExpenseDetail = () => {
   }
 
   return (
-    <main id="main" className="경비관리 상세">
-      <section className="sec ">
+      <section id="expense" className="sec ">
         <div className="inner">
           <div className="bg_n0 item bg_pm mt_md mb_md ">
             <div className="flex space-between">
@@ -252,7 +251,6 @@ const ExpenseDetail = () => {
           </div>
         </div>
       </section>
-    </main>
   );
 };
 

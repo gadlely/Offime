@@ -79,11 +79,13 @@ const ExpensesCount = () => {
   if (!isAdmin) return null;
 
   return (
-    <div className="bg_n0 item bg_pm flex " onClick={handleContainerClick}>
-      <h3 className="ml_xlg mr_lg">경비 관리</h3>
-      <h3 className="tc-pm ml_xlg pl_xlg ">{pendingCount}</h3>
-      <h3 className="tc-p5 pl_xlg">{rejectedCount}</h3>
-    </div>
+      <div id="expense" style={{cursor:"pointer"}}>
+        <div className="item bg_wt flex " onClick={handleContainerClick}>
+          <h3 className="ml_xlg mr_lg">경비 관리</h3>
+          <h3 className="tc-pm ml_xlg pl_xlg ">{pendingCount}</h3>
+          <h3 className="tc-p5 pl_xlg">{rejectedCount}</h3>
+        </div>
+      </div>
   );
 };
 

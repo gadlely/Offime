@@ -44,10 +44,9 @@ function Chatbot() {
   };
 
   return (
-    <main id="main" className="경비관리 상세">
-      <section className="sec ">
+      <section id="expense" className="sec ">
         <div className="inner">
-          <div className=" bg_n0 item bg_pm mt_md ">
+          <div className=" bg_n0 item bg_pm mt_md " style={{height:"50vh", overflowY:"scroll"}}>
             {messages.map((msg, index) => (
               <p
                 key={index}
@@ -85,7 +84,6 @@ function Chatbot() {
           </div>
         </div>
       </section>
-    </main>
   );
 }
 

@@ -17,7 +17,8 @@ const ExpenseSearch = ({ onSearch }) => {
           placeholder="검색어"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-txt fs_md mb_md"
+          className="input input-max input-txt fs_md mb_md mt_sm"
+          style={{borderRadius:"8px"}}
         />
         <button className="display_none">검색</button>
       </form>

@@ -13,7 +13,7 @@ function Home() {
     const [selected, setSelected] = useState("home");
 
     return (
-            <section className="sec">
+            <section className="sec pb_lg">
                 <div className="inner">
                     {selected === "menu" ? <Menu/> : (
                         <>

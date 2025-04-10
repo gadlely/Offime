@@ -131,13 +131,12 @@ const ExpenseWrite = () => {
   };
 
   return (
-    <main id="main" className="경비관리 상세">
-      <section className="sec ">
+      <section id="expense" className="sec ">
         <form className="inner" onSubmit={handleSubmit}>
-          <div className="bg_n0 item bg_pm mt_md mb_md">
+          <div className="bg_n0 item  mt_md mb_md">
             <p className="fs_lg ">제목</p>
             <input
-              className="input input-txt fs_md mb_md"
+              className="input input-txt fs_md mb_md input-max"
               name="title"
               value={expense.title}
               onChange={(e) =>
@@ -186,7 +185,7 @@ const ExpenseWrite = () => {
             {expense.amounts.map((amountItem, index) => (
               <div className="flex " key={index}>
                 <input
-                  className="input input-txt fs_md mb_md"
+                  className="input input-txt fs_md mb_md input-max"
                   name="amount"
                   type="text"
                   value={amountItem.amount || ""}
@@ -214,7 +213,7 @@ const ExpenseWrite = () => {
 
             <p className="fs_lg">전체 금액</p>
             <input
-              className="input fs_md mb_md"
+              className="input fs_md mb_md input-max p_sm"
               name="totalAmount"
               type="text"
               value={formatAmount(String(calculateTotalAmount()))}
@@ -231,7 +230,7 @@ const ExpenseWrite = () => {
             />
 
             <p className="fs_lg">유형</p>
-            <div className="flex space-around">
+            <div className="flex space-between" style={{gap:".5rem"}}>
               {["식비", "교통", "숙박", "경조사", "기타"].map((category) => (
                 <button
                   key={category}
@@ -239,6 +238,7 @@ const ExpenseWrite = () => {
                   className={`expense-button mb_md ${
                     expense.category === category ? "selected" : ""
                   }`}
+                  style={{width:"100%"}}
                   onClick={(e) => handleCategoryChange(category, e)}
                 >
                   {category}
@@ -248,7 +248,7 @@ const ExpenseWrite = () => {
 
             <p className="fs_lg">내용</p>
             <input
-              className="input input-txt fs_md mb_md"
+              className="input input-txt fs_md mb_md input-max"
               name="content"
               value={expense.content}
               onChange={(e) =>
@@ -265,7 +265,6 @@ const ExpenseWrite = () => {
           </button>
         </form>
       </section>
-    </main>
   );
 };
 

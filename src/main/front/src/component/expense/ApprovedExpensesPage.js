@@ -92,8 +92,7 @@ const ApprovedExpensesPage = () => {
   }, [token, selectedYear, selectedMonth, selectedCategory, navigate]);
 
   return (
-    <main id="main" className="경비관리 승인내역">
-      <div className="sec">
+      <div id="expense" className="sec">
         <div className="inner">
           <div className=" bg_n0 item bg_pm mt_md">
             <div className="item">
@@ -177,7 +176,6 @@ const ApprovedExpensesPage = () => {
           </div>
         </div>
       </div>
-    </main>
   );
 };
 

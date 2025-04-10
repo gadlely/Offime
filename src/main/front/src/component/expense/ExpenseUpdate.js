@@ -155,8 +155,7 @@ const ExpenseUpdate = () => {
   };
 
   return (
-    <main id="main" className="경비관리 상세">
-      <section className="sec ">
+      <section id="expense" className="sec ">
         <form className="inner" onSubmit={handleSubmit}>
           <div className="bg_n0 item bg_pm mt_md mb_md">
             <p className="fs_lg ">제목</p>
@@ -262,7 +261,6 @@ const ExpenseUpdate = () => {
           </button>
         </form>
       </section>
-    </main>
   );
 };
 
