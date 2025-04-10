@@ -104,23 +104,20 @@ function AttendanceManagerForLeader() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const totalEmployeesData = await fetchTotalEmployees();
-
-            if (totalEmployeesData !== null) {
+            if (viewType === "forAll") {
+                const totalEmployeesData = await fetchTotalEmployees();
                 setTotalEmployees(totalEmployeesData);
-            }
-
-            const employeesByTeamData = {};
-            for (const team of ["A", "B", "C"]) {
-                const teamCount = await fetchTotalEmployeesByTeam(team);
-                if (teamCount !== null) {
+            } else if (viewType === "forTeam") {
+                const employeesByTeamData = {};
+                for (const team of ["A", "B", "C"]) {
+                    const teamCount = await fetchTotalEmployeesByTeam(team);
                     employeesByTeamData[team] = teamCount;
                 }
+                setEmployeesByTeam(employeesByTeamData);
             }
-            setEmployeesByTeam(employeesByTeamData);
         };
         fetchData();
-    }, []);
+    }, [viewType]);
 
     useEffect(() => {
         const role = localStorage.getItem("role");
@@ -133,7 +130,7 @@ function AttendanceManagerForLeader() {
         const today = new Date();
         setSelectedDate(today);
     }, []);
-        
+
         useEffect(() => {
         if (selectedDate) {
             fetchAttendanceData(selectedDate);

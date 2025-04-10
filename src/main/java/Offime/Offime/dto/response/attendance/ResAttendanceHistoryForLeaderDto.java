@@ -54,9 +54,7 @@ public class ResAttendanceHistoryForLeaderDto {
                 .count();
 
         int beforeClockInCount =
-                currentTime.isBefore(COMPANY_START_TIME)
-                        ? workdayPersonnel  // 회사 시작 시간 이전: 전체 근무 예정 인원이 출근 전 상태
-                        : workdayPersonnel - clockInCount;  // 회사 시작 시간 이후: 출근하지 않은 인원만 출근 전 상태
+                workdayPersonnel - clockInCount;
 
         return ResAttendanceHistoryForLeaderDto.builder()
                 .clockInCount(clockInCount)
