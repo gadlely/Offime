@@ -28,16 +28,6 @@ function ReportRepliesList({ reportId }) {
 
     return (
         <>
-            <div className="replyHeader">
-                <img
-                    className="replyBackArrow"
-                    src="/image/report/backArrow.png"
-                    onClick={() => navigate(`/reports/read/${reportId}`)}
-                    alt="뒤로가기"
-                />
-                <p className="replyTitle">댓글</p>
-            </div>
-
             <div className="replyListContainer">
                 {repliesData.map((reply) => (
                     <ReportRepliesBlock

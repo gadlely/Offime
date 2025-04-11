@@ -33,9 +33,6 @@ public class Reports {
     @Column(name = "TITLE")
     private String title;
 
-    @Column(name = "ACTIVE")
-    private boolean active = true;
-
     @CreationTimestamp
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;

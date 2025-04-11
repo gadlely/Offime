@@ -10,8 +10,6 @@ function TemplateCreate() {
     const [title, setTitle] = useState("");
     const [icon, setIcon] = useState(1);
     const [color, setColor] = useState(1);
-    const [accessMemberIdList, setAccessMemberIdList] = useState([]);
-    const [memberId, setMemberId] = useState("");
     const [questionList, setQuestionList] = useState([]);
 
     const navigate = useNavigate();
@@ -29,7 +27,7 @@ function TemplateCreate() {
 
         console.log(orderedQuestionList);
 
-        const data = {title, icon, color, accessMemberIdList, questionList: orderedQuestionList};
+        const data = {title, icon, color, questionList: orderedQuestionList};
 
         try {
             const response = await axios.post("http://localhost:8080/templates/create", data);
@@ -39,14 +37,6 @@ function TemplateCreate() {
         }
     }
 
-    const addMemberId = (memberId) => {
-        setAccessMemberIdList((prev) => {
-            if (prev.includes(memberId)) {
-                return prev;
-            } else
-                return [...prev, memberId]
-        })
-    }
 
     const questionAdd = () => {
         const newId = `q${Date.now()}`

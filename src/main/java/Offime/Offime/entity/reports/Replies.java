@@ -25,7 +25,7 @@ public class Replies {
     private Reports report;
 
     @ManyToOne
-    @JoinColumn(name = "WRITER", nullable = false)
+    @JoinColumn(name = "WRITER_ID", nullable = false)
     private Member writer;
 
     @Column(columnDefinition = "TEXT", name = "CONTENT", nullable = false)
