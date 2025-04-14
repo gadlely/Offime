@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# 🕒 Offime - 출퇴근 및 근무 태도 관리 웹 애플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Offime은 팀원들의 근무 상태와 출퇴근 현황을 **관리할 수 있는 웹 애플리케이션**입니다. 사용자 친화적인 UI와 효율적인 기능을 통해 팀의 생산성과 신뢰를 높이는 것을 목표로 합니다.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 주제 선정 이유
 
-### `npm start`
+(내용 미정)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 👥 팀원 구성 및 역할
 
-### `npm test`
+| 이름 | 역할 및 담당 기능 |
+|------|------------------|
+| 김성우 (PM) | 스케줄 기능 및 페이지 개발, DB 설계 |
+| 최수민 (PM) | 로그인 및 회원 관리 기능 및 페이지 개발, DB 설계 |
+| 손수용 (PL) | 템플릿 및 보고서 기능 및 페이지 개발, DB 설계 |
+| 이영현 | 출퇴근 기능 및 페이지 개발, DB 설계 |
+| 오예준 | 휴가 및 알림 기능 및 페이지 개발, DB 설계 |
+| 박시진 | 경비 관리 기능 및 페이지 개발, DB 설계 |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠 작업 분배 기준
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+작업은 프론트엔드와 백엔드의 비중을 고려하여 기능 단위로 분담하였으며, 각 기능을 처음부터 끝까지 책임지는 방식으로 진행되었습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ✨ 구현 기능 상세
 
-### `npm run eject`
+### 🔹 김성우 (PM)
+- 스케줄 기능 및 페이지 개발
+- 관련 DB 설계
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🔹 최수민 (PM)
+- 로그인 및 회원 관리 기능 개발
+- 사용자 관리 페이지 개발
+- 관련 DB 설계
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🔹 손수용 (PL)
+- 템플릿 파트 개발: 보고서 양식 구성 (DnD 라이브러리 사용)
+- 보고서 파트 개발: REST API 기반 보고서 작성/수정/조회
+- 댓글 기능 개발: REST API 기반 댓글 CRUD 구현
+- 관련 DB 설계
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🔹 이영현
+- 출퇴근 기능 및 페이지 개발
+- 관련 DB 설계
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 🔹 오예준
+- 휴가 및 알림 기능 및 페이지 개발
+- 관련 DB 설계
 
-## Learn More
+### 🔹 박시진
+- 경비 관리 기능 및 페이지 개발
+- 관련 DB 설계
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ⚙️ 사용 기술 및 개발 환경
 
-### Code Splitting
+- Java 17
+- Spring Boot
+- IntelliJ IDEA
+- MySQL
+- React
+- GitHub
+- Open API
+- REST API
+- JSON
+- JPA (ORM)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
